@@ -41,7 +41,7 @@ export default function Header() {
                             <Link className="link" to="/"> Contact</Link>
                         </li>
                         <li className="item ml-md-3">
-                            <Link className="farm-btn farm-btn-small" to="/farmerhome"> Login</Link>
+                            <Link className="farm-btn farm-btn-small" to="/login"> Login</Link>
                         </li>
                     </ul>
                     <a href="javascript:void(0)" id="nav-toggle" onClick={handleToggle} className={`hamburger hamburger--elastic ${isActive ? 'is-active' : ''}`}>
