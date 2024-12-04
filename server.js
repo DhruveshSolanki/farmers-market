@@ -30,6 +30,9 @@ app.use("/src", assetsRouter);
 app.use("/", express.static(path.join(__dirname, "public")));
 
 // Routes
+const CURRENT_WORKING_DIR = process.cwd()
+//devBundle.compile(app)
+
 app.use('/api/v1/products', require('./server/routes/products.routes.js'));
 
 app.get("/api/v1", (req, res) => {
@@ -38,6 +41,10 @@ app.get("/api/v1", (req, res) => {
         from: "ExpressCrew",
     });
 });
+
+app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
+app.use('/', require('./server/routes/user.routes.js'))
+app.use('/', require('./server/routes/auth.routes.js'))
 
 app.listen(config.port, () => {
     console.log();
