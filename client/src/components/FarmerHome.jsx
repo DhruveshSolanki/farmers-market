@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Col, Container, Row, Modal, Button, Form } from 'react-bootstrap';
 import './FarmerHome.css';
 import { addProduct, updateProduct, getAllProducts, deleteProduct } from '../apis/product.api.js'
+import auth from '../helpers/auth.helper.js'
 
 export default function FarmerHome() {
 
@@ -21,11 +22,13 @@ export default function FarmerHome() {
         category: ''
     });
 
+    const jwt = auth.isAuthenticated()
+
     // Fetch products when the component loads
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const products = await getAllProducts(); // Call the async function and wait for the data
+                const products = await getAllProducts({t: jwt.token}); // Call the async function and wait for the data
                 setProducts(products); // Set the fetched data into the state
             } catch (error) {
                 console.error('Error fetching product data:', error);
@@ -38,7 +41,7 @@ export default function FarmerHome() {
     // Function to refetch product data
     const fetchProductData = async () => {
         try {
-            const products = await getAllProducts();
+            const products = await getAllProducts({t: jwt.token});
             setProducts(products);
         } catch (error) {
             console.error('Error fetching product data:', error);
@@ -100,16 +103,16 @@ export default function FarmerHome() {
     // Handler to submit the form
     const handleSubmit = async () => {
         if (isEditing) {
-            await updateProduct(formData.id, formData);
+            await updateProduct(formData.id, formData, {t: jwt.token});
         } else {
-            await addProduct(formData);
+            await addProduct(formData, {t: jwt.token});
         }
         await fetchProductData();
         handleClose();
     };
 
     const handleDeleteConfirm = async () => {
-        await deleteProduct(currentProduct);
+        await deleteProduct(currentProduct, {t: jwt.token});
         await fetchProductData(); 
         setShowDeleteModal(false);
     };

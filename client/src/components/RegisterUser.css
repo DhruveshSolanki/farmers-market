@@ -1,0 +1,127 @@
+.farm-register {
+    background-image: url('../assets/images/loginbg.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    font-family: kreon;
+}
+
+.farm-register::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(53, 52, 52, 0.5);
+    z-index: 1;
+}
+
+.farm-register>* {
+    position: relative;
+    z-index: 2;
+}
+
+.farm-register .farm-register-container {
+    display: flex;
+    justify-content: center;
+}
+
+.farm-register .farm-register-content {
+    background: #fff;
+    border-radius: 60px;
+    border: 5px solid #FBAC00;
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    padding: 15px 30px;
+}
+
+.farm-register .farm-register-content div {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.farm-register .farm-register-content .farm-register-logo img{
+    width: 80px;
+}
+
+.farm-register .farm-register-content .farm-register-header {
+    color: #FBAC00;
+}
+
+.farm-register .farm-register-content .farm-register-ctrl {
+    width: auto;
+}
+
+.farm-register .farm-register-content .farm-register-ctrl:hover,
+.farm-register .farm-register-content .farm-register-ctrl:active,
+.farm-register .farm-register-content .farm-register-ctrl:focus-within {
+    box-shadow: 0 0 15px #FBAC00;
+    border-radius: 15px;
+}
+
+.farm-register .farm-register-content .farm-register-ctrl .input-group-text {
+    background: #FFF1F1;
+    border-radius: 15px;
+    border: 2px solid #FBAC00;
+    transition: all 0.3s ease-in-out;
+    border-right: none;
+}
+
+.farm-register .farm-register-content .farm-register-ctrl input {
+    background: #FFF1F1;
+    border-radius: 15px;
+    border: 2px solid #FBAC00;
+    border-left: none;
+    transition: all 0.3s ease-in-out;
+    color: rgb(53 52 52 / 80%);
+    outline: none;
+    width: 95%;
+}
+
+.farm-register .farm-register-content .farm-register-ctrl input::placeholder,
+.farm-register .farm-register-content .farm-register-ctrl .input-group-text i {
+    color: rgb(53 52 52 / 50%);
+}
+
+.farm-register .farm-register-content .farm-register-btn button {
+    background: #FBAC00;
+    border-radius: 10px;
+    margin-top: 15px;
+    padding: 3px 10px;
+    width: 100%;
+    border: 1px solid #FBAC00;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+}
+
+.farm-register .farm-register-content .farm-register-btn button:hover,
+.farm-register .farm-register-content .farm-register-btn button:active,
+.farm-register .farm-register-content .farm-register-btn button:focus {
+    box-shadow: 0 0 15px #FBAC00;
+}
+
+.farm-register .farm-register-content .farm-register-footer {
+    display: flex;
+    flex-direction: column;
+    color: rgb(53 52 52 / 50%);
+    font-weight: 600;
+}
+
+.farm-register .farm-register-content .farm-register-footer .farm-register-signup span a {
+    color: #FBAC00;
+    margin-left: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.farm-register .farm-register-content .farm-register-footer .farm-register-signup span a:hover,
+.farm-register .farm-register-content .farm-register-footer .farm-register-signup span a:active,
+.farm-register .farm-register-content .farm-register-footer .farm-register-signup span a:focus {
+    text-decoration: underline;
+}

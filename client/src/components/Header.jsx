@@ -1,11 +1,15 @@
 import './Header.css'
 import Container from 'react-bootstrap/Container';
 import farmLogo from '../assets/images/farm_logo.png'
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import auth from '../helpers/auth.helper.js'
 
 
 export default function Header() {
+
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const [isActive, setIsActive] = useState(false);
 
@@ -13,6 +17,11 @@ export default function Header() {
     const handleToggle = () => {
         setIsActive(!isActive); // Toggle the state
     };
+
+    //handle logout
+    const handleLogout = () => {
+        auth.clearJWT()
+    }
 
     return (<>
         <header className="farm-header">
@@ -41,7 +50,18 @@ export default function Header() {
                             <Link className="link" to="/"> Contact</Link>
                         </li>
                         <li className="item ml-md-3">
-                            <Link className="farm-btn farm-btn-small" to="/login"> Login</Link>
+                            {
+                                location.pathname === '/farmerhome' && <>
+                                    <Link className="farm-btn farm-btn-small" to={'/'} onClick={handleLogout}> Logout</Link>
+                                </>
+                            }
+
+                            {
+                                location.pathname !== '/farmerhome' && <>
+                                    <Link className="farm-btn farm-btn-small" to='/login'> Login</Link>
+                                </>
+                            }
+
                         </li>
                     </ul>
                     <a href="javascript:void(0)" id="nav-toggle" onClick={handleToggle} className={`hamburger hamburger--elastic ${isActive ? 'is-active' : ''}`}>

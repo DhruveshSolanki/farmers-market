@@ -7,23 +7,23 @@ const productCtrl = require('../controllers/product.controller.js');
 //create product endpoint
 router.route('/')
     .get(authCtrl.requireSignin, productCtrl.getAllProducts)
-    .post(authCtrl.requireSignin, authCtrl.hasAuthorization, productCtrl.createProduct)
+    .post(authCtrl.requireSignin, productCtrl.createProduct)
 
 //update product by id 
 router.route('/:id')
-    .put(authCtrl.requireSignin, authCtrl.hasAuthorization, productCtrl.updateProduct)
-    .delete(authCtrl.requireSignin, authCtrl.hasAuthorization, productCtrl.deleteProduct)
+    .put(authCtrl.requireSignin, productCtrl.updateProduct)
+    .delete(authCtrl.requireSignin, productCtrl.deleteProduct)
 
 //update product stock by id 
 router.route('/:id/stock')
-    .put(authCtrl.requireSignin, authCtrl.hasAuthorization, productCtrl.updateProductStock);
+    .put(authCtrl.requireSignin, productCtrl.updateProductStock);
 
 //update product stock by id
 router.route('/:id/stock')
-    .put(authCtrl.requireSignin, authCtrl.hasAuthorization, productCtrl.updateProductStock);
+    .put(authCtrl.requireSignin, productCtrl.updateProductStock);
 
 //update product price by id
 router.route('/:id/price')
-    .put(authCtrl.requireSignin, authCtrl.hasAuthorization, productCtrl.updateProductPrice);
+    .put(authCtrl.requireSignin, productCtrl.updateProductPrice);
 
 module.exports = router;
