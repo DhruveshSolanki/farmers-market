@@ -11,16 +11,24 @@ const auth = {
 
     },
     authenticate(jwt, cb) {
-        if (typeof window !== "undefined")
+        if (typeof window !== "undefined"){
             sessionStorage.setItem('jwt', JSON.stringify(jwt))
+
+            const expirationTime = 2 * 60 * 60 * 1000; // 2 hours in milliseconds
+            setTimeout(() => {
+                this.clearJWT();
+            }, expirationTime);
+
+        }
+            
         cb()
 
     },
-    clearJWT(cb) {
+    clearJWT() {
         if (typeof window !== "undefined")
             sessionStorage.removeItem('jwt')
-        cb()
-
+        // cb()
+                
         //optional
         signout().then(() => {
             document.cookie = "t=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"

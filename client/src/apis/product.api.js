@@ -1,12 +1,13 @@
 
 const API_URL = '/api/v1/products';
 
-export const getAllProducts = async () => {
+export const getAllProducts = async (credentials) => {
   try {
     const response = await fetch(API_URL, {
       method: 'GET',
       headers: {
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t
       }
     });
 
@@ -25,64 +26,71 @@ export const getAllProducts = async () => {
 };
 
 // API call to add a new product
-export const addProduct = async (productData) => {
+export const addProduct = async (productData, credentials) => {
   try {
-      const response = await fetch('/api/v1/products', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(productData), // Send the form data in the body
-      });
+    const response = await fetch('/api/v1/products', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t,
+      },
+      body: JSON.stringify(productData), // Send the form data in the body
+    });
 
-      if (!response.ok) {
-          throw new Error('Failed to add the product');
-      }
+    if (!response.ok) {
+      throw new Error('Failed to add the product');
+    }
 
-      return await response.json(); // Return the newly added product
+    return await response.json(); // Return the newly added product
   } catch (error) {
-      console.error('Error adding product:', error);
-      throw error;
+    console.error('Error adding product:', error);
+    throw error;
   }
 };
 
 // API call to update an existing product
-export const updateProduct = async (productId, productData) => {
+export const updateProduct = async (productId, productData, credentials) => {
   try {
-      const response = await fetch(`/api/v1/products/${productId}`, {
-          method: 'PUT',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(productData), // Send the form data in the body
-      });
+    const response = await fetch(`/api/v1/products/${productId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t
+      },
+      body: JSON.stringify(productData), // Send the form data in the body
+    });
 
-      if (!response.ok) {
-          throw new Error('Failed to update the product');
-      }
+    if (!response.ok) {
+      throw new Error('Failed to update the product');
+    }
 
-      return await response.json(); // Return the updated product
+    return await response.json(); // Return the updated product
   } catch (error) {
-      console.error('Error updating product:', error);
-      throw error;
+    console.error('Error updating product:', error);
+    throw error;
   }
 };
 
 // API call to delete an existing product
-export const deleteProduct = async (productId) => {
+export const deleteProduct = async (productId, credentials) => {
   try {
-      const response = await fetch(`/api/v1/products/${productId}`, {
-          method: 'DELETE',
-      });
-
-      if (!response.ok) {
-          throw new Error('Failed to delete the product');
+    const response = await fetch(`/api/v1/products/${productId}`, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t
       }
+    });
 
-      return await response.json(); // Return the response after deletion
+    if (!response.ok) {
+      throw new Error('Failed to delete the product');
+    }
+
+    return await response.json(); // Return the response after deletion
   } catch (error) {
-      console.error('Error deleting product:', error);
-      throw error;
+    console.error('Error deleting product:', error);
+    throw error;
   }
 };
 

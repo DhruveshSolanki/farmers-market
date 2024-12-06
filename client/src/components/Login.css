@@ -46,8 +46,11 @@
     flex-wrap: wrap;
 }
 
+.farm-login .farm-login-content .farm-login-logo img{
+    width: 80px;
+}
+
 .farm-login .farm-login-content .farm-login-header {
-    padding-top: 1rem;
     color: #FBAC00;
 }
 
@@ -110,16 +113,16 @@
     font-weight: 600;
 }
 
-.farm-login .farm-login-content .farm-login-footer .farm-login-signup span {
+.farm-login .farm-login-content .farm-login-footer .farm-login-signup span a {
     color: #FBAC00;
     margin-left: 5px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 }
 
-.farm-login .farm-login-content .farm-login-footer .farm-login-signup span:hover,
-.farm-login .farm-login-content .farm-login-footer .farm-login-signup span:active,
-.farm-login .farm-login-content .farm-login-footer .farm-login-signup span:focus {
+.farm-login .farm-login-content .farm-login-footer .farm-login-signup span a:hover,
+.farm-login .farm-login-content .farm-login-footer .farm-login-signup span a:active,
+.farm-login .farm-login-content .farm-login-footer .farm-login-signup span a:focus {
     text-decoration: underline;
 }
 
