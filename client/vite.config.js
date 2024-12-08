@@ -7,15 +7,15 @@ export default defineConfig({
   server: {
     proxy: {
       '/api/v1': {
-        target: `https://farmers-market-5zfyv74a7-dhruvesh-solankis-projects.vercel.app`,
+        target: `https://farmers-market-beta.vercel.app`,
         changeOrigin: true,
       },
       '/api/users': {
-        target: `https://farmers-market-5zfyv74a7-dhruvesh-solankis-projects.vercel.app`,
+        target: `https://farmers-market-beta.vercel.app`,
         changeOrigin: true,
       },
       '/auth': {
-        target: `https://farmers-market-5zfyv74a7-dhruvesh-solankis-projects.vercel.app`,
+        target: `https://farmers-market-beta.vercel.app`,
         changeOrigin: true,
       },
     },
