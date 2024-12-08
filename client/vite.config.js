@@ -19,11 +19,5 @@ export default defineConfig({
         changeOrigin: true,
       },
     },
-  },
-  build: {
-    manifest: true,
-    rollupOptions: {
-      input: "./index.html",
-    },
-  },
+  }
 });
