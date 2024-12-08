@@ -7,15 +7,15 @@ export default defineConfig({
   server: {
     proxy: {
       '/api/v1': {
-        target: `http://localhost:${PORT}`,
+        target: `https://farmers-market-5zfyv74a7-dhruvesh-solankis-projects.vercel.app`,
         changeOrigin: true,
       },
       '/api/users': {
-        target: `http://localhost:${PORT}`,
+        target: `https://farmers-market-5zfyv74a7-dhruvesh-solankis-projects.vercel.app`,
         changeOrigin: true,
       },
       '/auth': {
-        target: `http://localhost:${PORT}`,
+        target: `https://farmers-market-5zfyv74a7-dhruvesh-solankis-projects.vercel.app`,
         changeOrigin: true,
       },
     },
@@ -23,7 +23,7 @@ export default defineConfig({
   build: {
     manifest: true,
     rollupOptions: {
-      input: "./src/main.jsx",
+      input: "./index.html",
     },
   },
 });
