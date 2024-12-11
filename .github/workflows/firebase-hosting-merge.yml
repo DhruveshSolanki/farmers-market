@@ -19,3 +19,4 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_FARMERS_MARKET_E2BC2 }}
           channelId: live
           projectId: farmers-market-e2bc2
+          entryPoint: ./client
