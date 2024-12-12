@@ -4,72 +4,65 @@ const app = express();
 const assetsRouter = require("./server/assets-router");
 const config = require('./config/config.js');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser')
-const cookieParser = require('cookie-parser')
-const compress = require('compression')
-const cors = require('cors')
-const helmet = require('helmet')
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const compress = require('compression');
+const cors = require('cors');
+const helmet = require('helmet');
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(cookieParser())
-app.use(compress())
-app.use(helmet())
+// Middleware setup
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(compress());
+app.use(helmet());
+
+// CORS configuration
+const allowedOrigins = [
+    'https://farmers-market-e2bc2.web.app',
+    'http://localhost:5173',
+];
+
+// Use CORS middleware
 app.use(cors({
-    origin: true, 
-    credentials: true,
-    allowedHeaders
-},))
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) === -1) {
+            const msg = `The CORS policy for this site does not allow access from the specified Origin: ${origin}`;
+            return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+    },
+    credentials: true, // Allow cookies and authorization headers
+}));
 
-app.use(function (req, res, next) {
-
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', ['https://farmers-market-e2bc2.web.app','http://localhost:5173']);
-
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
-
-    // Pass to next layer of middleware
-    next();
-});
+// Preflight request handling
+app.options('*', cors());
 
 // Connect to MongoDB
-mongoose.Promise = global.Promise
+mongoose.Promise = global.Promise;
 
 mongoose.connect(config.mongoUri, {
-    // useNewUrlParser: true,
-    //useCreateIndex: true, 
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
 }).then(() => {
-    console.log("Connected to the database!"); }
-)
+    console.log("Connected to the database!");
+}).catch(err => {
+    console.error(`Unable to connect to database: ${err}`);
+});
 
-mongoose.connection.on('error', () =>{
-    throw new Error(`unable to connect to database: ${config.mongoUri}`);
-})
-
-// Middleware to parse JSON bodies
-app.use(express.json());
-
-// Middleware to parse URL-encoded bodies (for form data)
-app.use(express.urlencoded({ extended: true }));
-
-app.use("/src", assetsRouter);
+// Middleware to serve static files
+const CURRENT_WORKING_DIR = process.cwd();
+app.use('/src', assetsRouter);
 app.use("/", express.static(path.join(__dirname, "public")));
+app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')));
 
 // Routes
-const CURRENT_WORKING_DIR = process.cwd()
-//devBundle.compile(app)
-
 app.use('/api/v1/products', require('./server/routes/products.routes.js'));
+app.use('/', require('./server/routes/user.routes.js'));
+app.use('/', require('./server/routes/auth.routes.js'));
 
+// Example API endpoint
 app.get("/api/v1", (req, res) => {
     res.json({
         project: "Farmer's Market",
@@ -77,17 +70,8 @@ app.get("/api/v1", (req, res) => {
     });
 });
 
-app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
-app.use('/', require('./server/routes/user.routes.js'))
-app.use('/', require('./server/routes/auth.routes.js'))
-
+// Start the server
 app.listen(config.port, () => {
-    console.log();
-    console.log(`App running in port ${config.port}`);
-    console.log();
+    console.log(`App running on port ${config.port}`);
     console.log(`> Local: \x1b[36mhttp://localhost:\x1b[1m${config.port}/\x1b[0m`);
 });
-
-// app.get("/*", (_req, res) => {
-//     res.sendFile(path.join(__dirname, "public", "index.html"));
-// })
