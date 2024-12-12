@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(compress())
 app.use(helmet())
-app.use(cors({origin: true}))
+app.use(cors({origin: true, credentials: true},))
 
 // Connect to MongoDB
 mongoose.Promise = global.Promise
@@ -44,13 +44,6 @@ app.use("/", express.static(path.join(__dirname, "public")));
 // Routes
 const CURRENT_WORKING_DIR = process.cwd()
 //devBundle.compile(app)
-
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'https://farmers-market-e2bc2.web.app'); // Allow your React app's origin
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Allowed methods
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Allowed headers
-    next();
-  });
 
 app.use('/api/v1/products', require('./server/routes/products.routes.js'));
 

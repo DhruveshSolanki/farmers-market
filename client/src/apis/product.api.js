@@ -1,5 +1,5 @@
 
-const API_URL = process.env.NODE_ENV === 'production' ? import.meta.env.VITE_API_URL : '/api/v1/products';
+const API_URL = process.env.NODE_ENV === 'production' ? import.meta.env.VITE_API_URL + '/api/v1/products' : '/api/v1/products';
 // const API_URL = import.meta.env.VITE_API_URL + '/api/v1/products';
 export const getAllProducts = async (credentials) => {
   try {
