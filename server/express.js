@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(compress())
 app.use(helmet())
-app.use(cors())
+app.use(cors({origin: true}))
 
 // app.get('/', (req, res) => {
 //     res.status(200).send(Template())
