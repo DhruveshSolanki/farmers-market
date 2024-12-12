@@ -45,6 +45,13 @@ app.use("/", express.static(path.join(__dirname, "public")));
 const CURRENT_WORKING_DIR = process.cwd()
 //devBundle.compile(app)
 
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://farmers-market-e2bc2.web.app'); // Allow your React app's origin
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Allowed methods
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Allowed headers
+    next();
+  });
+
 app.use('/api/v1/products', require('./server/routes/products.routes.js'));
 
 app.get("/api/v1", (req, res) => {
