@@ -4,6 +4,18 @@ const app = express();
 const assetsRouter = require("./server/assets-router");
 const config = require('./config/config.js');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
+const compress = require('compression')
+const cors = require('cors')
+const helmet = require('helmet')
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(cookieParser())
+app.use(compress())
+app.use(helmet())
+app.use(cors({origin: true}))
 
 // Connect to MongoDB
 mongoose.Promise = global.Promise
