@@ -1,4 +1,4 @@
-const API_URL = process.env.NODE_ENV === 'production' ? import.meta.env.VITE_API_URL : '/api/users/';
+const API_URL = process.env.NODE_ENV === 'production' ? import.meta.env.VITE_API_URL + '/api/users/' : '/api/users/';
 const create = async (user) => {
     try {
         let response = await fetch(API_URL, {
