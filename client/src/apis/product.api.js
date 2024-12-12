@@ -52,7 +52,7 @@ export const addProduct = async (productData, credentials) => {
 // API call to update an existing product
 export const updateProduct = async (productId, productData, credentials) => {
   try {
-    const response = await fetch(API_URL+`/${productId}`, {
+    const response = await fetch(API_URL + `/${productId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ export const updateProduct = async (productId, productData, credentials) => {
 // API call to delete an existing product
 export const deleteProduct = async (productId, credentials) => {
   try {
-    const response = await fetch(API_URL+`/${productId}`, {
+    const response = await fetch(API_URL + `/${productId}`, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',

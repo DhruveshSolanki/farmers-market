@@ -1,0 +1,127 @@
+@import url("https://fonts.googleapis.com/css?family=Baloo+Paaji|Open+Sans:300,300i,400,400i,600,600i,700,700i");
+
+.farm-home {
+    background-image: url('../assets/images/agro1.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+.farm-home::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: inherit;
+    z-index: 0;
+    background-image: url('../assets/images/overlay_img.png');
+    opacity: .5;
+}
+
+.farm-home .farm-home-overlay {
+    height: inherit;
+    position: relative;
+}
+
+.section {
+    padding: 70px 10px
+}
+
+.section .section-title {
+    font-size: calc(20px + .015*(100vw - 300px))
+}
+
+.section .section-subtitle {
+    margin-bottom: 6px;
+    font-weight: 400;
+    opacity: .6
+}
+
+.section-sm {
+    padding: 40px 0 !important
+}
+
+.section-md {
+    padding: 60px 0 !important
+}
+
+.section-lg {
+    padding: 100px 0 !important
+}
+
+.contact-alert.alert-success {
+    z-index: 9999;
+    position: absolute;
+    left: 40%
+}
+
+.contact-alert.alert-danger {
+    z-index: 9999;
+    position: absolute;
+    left: 35%
+}
+
+.farm-contact p {
+    font-size: calc(13px + .002*(100vw - 300px));
+    font-weight: 100;
+    opacity: 1;
+    color: #111;
+    letter-spacing: .6px;
+}
+
+.farm-contact h1,h2,h3,h4,h5,h6 {
+    font-weight: 500;
+    font-family: Baloo Paaji,cursive;
+    color: #fcdb5a
+}
+
+.farm-contact .form-row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -5px;
+    margin-left: -5px
+}
+
+.farm-contact .form-row>.col, .form-row>[class*=col-] {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+.farm-contact .form-group {
+    margin-bottom: 1rem;
+}
+
+.farm-contact .btn-outline-primary {
+    color: #fcdb5a;
+    border-color: #fcdb5a
+}
+
+.farm-contact .btn-outline-primary:hover {
+    color: #fff;
+    background-color: #fcdb5a;
+    border-color: #fcdb5a
+}
+
+.farm-contact .btn-outline-primary:focus,.btn-outline-primary.focus {
+    box-shadow: 0 0 0 .2rem #695aa680
+}
+
+.farm-contact .btn-outline-primary.disabled,.btn-outline-primary:disabled {
+    color: #fcdb5a;
+    background-color: transparent
+}
+
+.farm-contact .btn-outline-primary:not(:disabled):not(.disabled):active,.btn-outline-primary:not(:disabled):not(.disabled).active,.show>.btn-outline-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #fcdb5a;
+    border-color: #fcdb5a
+}
+
+.farm-contact .btn-outline-primary:not(:disabled):not(.disabled):active:focus,.btn-outline-primary:not(:disabled):not(.disabled).active:focus,.show>.btn-outline-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 .2rem #695aa680
+}

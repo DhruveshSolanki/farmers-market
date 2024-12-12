@@ -13,6 +13,8 @@ export default function Header() {
 
     const [isActive, setIsActive] = useState(false);
 
+    const [isLoggedin, setIsLoggedin] = useState(auth.isAuthenticated());
+
     // Function to handle nav-bar toggle event
     const handleToggle = () => {
         setIsActive(!isActive); // Toggle the state
@@ -21,7 +23,20 @@ export default function Header() {
     //handle logout
     const handleLogout = () => {
         auth.clearJWT()
+        setIsLoggedin(false)
     }
+
+    // Handle Products navigation
+    const handleProductsClick = (e) => {
+        e.preventDefault(); // Prevent default link navigation
+        if (auth.isAuthenticated()) {
+            setIsLoggedin(true);
+            navigate('/farmerhome'); // Redirect to the products page
+        } else {
+            setIsLoggedin(false);
+            navigate('/login'); // Redirect to the login page
+        }
+    };
 
     return (<>
         <header className="farm-header">
@@ -38,30 +53,25 @@ export default function Header() {
                             <Link className="link" to="/"> Home</Link>
                         </li>
                         <li className="item">
-                            <Link className="link" to="/"> Offers</Link>
+                            <Link className="link" to="/login"> Offers</Link>
                         </li>
                         <li className="item">
-                            <Link className="link" to="/"> Products</Link>
+                            <Link className="link" onClick={handleProductsClick}> Products</Link>
                         </li>
                         <li className="item">
-                            <Link className="link" to="/"> About</Link>
+                            <Link className="link" to="/about"> About</Link>
                         </li>
                         <li className="item">
-                            <Link className="link" to="/"> Contact</Link>
+                            <Link className="link" to="/contact"> Contact</Link>
                         </li>
                         <li className="item ml-md-3">
                             {
-                                location.pathname === '/farmerhome' && <>
+                                isLoggedin ? (<>
                                     <Link className="farm-btn farm-btn-small" to={'/'} onClick={handleLogout}> Logout</Link>
-                                </>
-                            }
-
-                            {
-                                location.pathname !== '/farmerhome' && <>
+                                </>) : (<>
                                     <Link className="farm-btn farm-btn-small" to='/login'> Login</Link>
-                                </>
+                                </>)
                             }
-
                         </li>
                     </ul>
                     <a href="javascript:void(0)" id="nav-toggle" onClick={handleToggle} className={`hamburger hamburger--elastic ${isActive ? 'is-active' : ''}`}>

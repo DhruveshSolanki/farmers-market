@@ -1,0 +1,59 @@
+.farm-home {
+    background-image: url('../assets/images/agro1.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+.farm-home::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: inherit;
+    z-index: 0;
+    background-image: url('../assets/images/overlay_img.png');
+    opacity: .5;
+}
+
+.farm-home .farm-home-overlay {
+    height: inherit;
+    position: relative;
+}
+
+.farm-about .btn-outline-primary {
+    color: #fcdb5a;
+    border-color: #fcdb5a
+}
+
+.farm-about .btn-outline-primary:hover {
+    color: #fff;
+    background-color: #fcdb5a;
+    border-color: #fcdb5a
+}
+
+.farm-about .btn-outline-primary:focus,.btn-outline-primary.focus {
+    box-shadow: 0 0 0 .2rem #695aa680
+}
+
+.farm-about .btn-outline-primary.disabled,.btn-outline-primary:disabled {
+    color: #fcdb5a;
+    background-color: transparent
+}
+
+.farm-about .btn-outline-primary:not(:disabled):not(.disabled):active,.btn-outline-primary:not(:disabled):not(.disabled).active,.show>.btn-outline-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #fcdb5a;
+    border-color: #fcdb5a
+}
+
+.farm-about .btn-outline-primary:not(:disabled):not(.disabled):active:focus,.btn-outline-primary:not(:disabled):not(.disabled).active:focus,.show>.btn-outline-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 .2rem #695aa680
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #fff;
+}

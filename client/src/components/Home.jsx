@@ -15,7 +15,7 @@ export default function Home() {
                                     Enjoy easy access to quality products while supporting small farmers.</p>
                                 <p className="mt-5 mt-md-10 text-center">
                                     <span className="d-none d-sm-block">
-                                        <a className="farm-btn farm-btn-big" href="/">Discover</a>
+                                        <a className="farm-btn farm-btn-big" href="/about">Discover</a>
                                     </span>
                                 </p>
                             </Col>

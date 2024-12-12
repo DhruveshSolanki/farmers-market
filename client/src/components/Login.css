@@ -46,6 +46,14 @@
     flex-wrap: wrap;
 }
 
+.farm-login .farm-login-content .error-message{
+    font-size: 12px;
+    color: #ff0000;
+    margin: 0 !important;
+    align-self: self-start;
+    margin-left: 12px !important;
+}
+
 .farm-login .farm-login-content .farm-login-logo img{
     width: 80px;
 }

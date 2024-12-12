@@ -4,6 +4,8 @@ import Home from "../components/Home"
 import FarmerHome from "../components/FarmerHome"
 import Login from "../components/Login"
 import RegisterUser from "../components/RegisterUser"
+import Contact from "../components/Contact"
+import About from "../components/About"
 
 const MainRouter = () => {
     const location = useLocation();    
@@ -18,6 +20,8 @@ const MainRouter = () => {
                 <Route exact path="/login" element={<Login />} />
                 <Route exact path="/signup" element={<RegisterUser />} />
                 <Route exact path="/farmerhome" element={<FarmerHome />} />
+                <Route exact path="/contact" element={<Contact />} />
+                <Route exact path="/about" element={<About />} />
             </Routes>
         </div>
     )

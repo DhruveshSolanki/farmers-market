@@ -12,12 +12,12 @@
     margin-bottom: 1rem;
 }
 
-.card {
+.farm-farmer-home .card {
     width: 250px;
     margin-bottom: 2rem;
 }
 
-.cont {
+.farm-farmer-home .cont {
     display: flex;
     justify-content: space-between;
     margin: 1rem;

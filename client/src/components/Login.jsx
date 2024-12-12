@@ -17,7 +17,40 @@ export default function Login(props) {
         redirectToReferrer: false
     })
 
+    const [errors, setErrors] = useState({
+        email: '',
+        password: ''
+    });
+
+    const validate = () => {
+        let isValid = true;
+        const newErrors = {};
+
+        if (!values.email) {
+            newErrors.email = 'Email is required';
+            isValid = false;
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
+            newErrors.email = 'Invalid email format';
+            isValid = false;
+        }
+
+        if (!values.password) {
+            newErrors.password = 'Password is required';
+            isValid = false;
+        } else if (values.password.length < 6) {
+            newErrors.password = 'Password must be at least 6 characters long';
+            isValid = false;
+        }
+
+        setErrors(newErrors);
+        return isValid;
+    };
+
     const clickSubmit = () => {
+        if (!validate()) {
+            return;
+        }
+
         const user = {
             email: values.email || undefined,
             password: values.password || undefined
@@ -64,10 +97,12 @@ export default function Login(props) {
                         <span className='input-group-text'><i className="bi bi-person"></i></span>
                         <input type='email' placeholder='Email' value={values.email} onChange={handleChange('email')} />
                     </div>
+                    {errors.email && <div className="error-message">{errors.email}</div>}
                     <div className="farm-login-ctrl input-group flex-nowrap">
                         <span className='input-group-text'><i className="bi bi-lock"></i></span>
                         <input type='password' placeholder='Password' value={values.password} onChange={handleChange('password')} />
                     </div>
+                    {errors.password && <div className="error-message">{errors.password}</div>}
                     <div className="farm-login-btn">
                         <button onClick={clickSubmit} >Login</button>
                     </div>
