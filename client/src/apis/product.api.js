@@ -1,6 +1,6 @@
 
-const API_URL = '/api/v1/products';
-
+const API_URL = process.env.NODE_ENV === 'production' ? import.meta.env.VITE_API_URL : '/api/v1/products';
+// const API_URL = import.meta.env.VITE_API_URL + '/api/v1/products';
 export const getAllProducts = async (credentials) => {
   try {
     const response = await fetch(API_URL, {
@@ -20,6 +20,7 @@ export const getAllProducts = async (credentials) => {
     const data = await response.json();
     return data;
   } catch (error) {
+    console.error(API_URL)
     console.error('Error fetching products:', error);
     throw error;
   }

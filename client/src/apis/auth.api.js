@@ -1,6 +1,8 @@
+const API_URL = process.env.NODE_ENV === 'production' ? import.meta.env.VITE_API_URL : '/auth';
+
 const signin = async (user) => {
     try {
-        let response = await fetch('/auth/signin/', {
+        let response = await fetch(API_URL + '/signin/', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -17,7 +19,7 @@ const signin = async (user) => {
 
 const signout = async () => {
     try {
-        let response = await fetch('/auth/signout/', { method: 'GET' })
+        let response = await fetch(API_URL + '/signout/', { method: 'GET' })
         return await response.json()
     } catch (err) {
         console.log(err)
